@@ -13,10 +13,3 @@ export const TopTabs = () => {
         </Tab.Navigator>
     );
 }
-
-const styles = StyleSheet.create({
-    safearea: {
-        backgroundColor: "white",
-        flex: 1
-    },
-})
