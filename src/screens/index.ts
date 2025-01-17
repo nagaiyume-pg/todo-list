@@ -1,2 +1,2 @@
-export {FinishedScreen} from './FinishedScreens'
-export {UnfinishedScreen} from './UnfinishedScreen'
+export * from './UnfinishedScreen'
+export * from './FinishedScreen'

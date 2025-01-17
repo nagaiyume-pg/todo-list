@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useCallback, useState } from "react";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import DraggableFlatList, {
     ScaleDecorator,
     ShadowDecorator,
@@ -17,28 +17,29 @@ export const FinishedScreen = () => {
     const [data, setData] = useState(initialData);
 
     const renderItem = useCallback(
-        ({ item, drag, isActive }: RenderItemParams<Item>) => {
-            return (
-                <ShadowDecorator>
-                    <ScaleDecorator>
+    ({ item, drag, isActive }: RenderItemParams<Item>) => {
+        return (
+            <ShadowDecorator>
+                <ScaleDecorator>
                     <OpacityDecorator>
-                        <TouchableOpacity
+                    <TouchableOpacity
                         activeOpacity={1}
                         onLongPress={drag}
                         disabled={isActive}
                         style={[
-                            styles.rowItem,
-                            { backgroundColor: isActive ? "blue" : item.backgroundColor },
+                        styles.rowItem,
+                        { backgroundColor: isActive ? "blue" : item.backgroundColor },
                         ]}
-                        >
+                    >
                         <Text style={styles.text}>{item.text}</Text>
-                        </TouchableOpacity>
+                    </TouchableOpacity>
                     </OpacityDecorator>
-                    </ScaleDecorator>
-                </ShadowDecorator>
-            );
+                </ScaleDecorator>
+            </ShadowDecorator>
+        );
         },
-    []);
+        []
+    );
 
     return (
         <DraggableFlatList
@@ -57,12 +58,12 @@ const styles = StyleSheet.create({
     rowItem: {
         height: 100,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
     },
     text: {
         color: "white",
         fontSize: 24,
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
     },
 });

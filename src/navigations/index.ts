@@ -1,2 +1,1 @@
-export {DrawerNav} from './DrawerNav'
-export {TopTabs} from './TopTabs'
+export * from "./TopTabs"
