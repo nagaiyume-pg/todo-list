@@ -1,14 +1,17 @@
-import { UnfinishedScreen } from '@/screens';
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { TopTabs } from '@/navigations';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
     <GestureHandlerRootView style={StyleSheet.absoluteFill}>
       <SafeAreaProvider>
-        <UnfinishedScreen />
+        <NavigationContainer>
+          <TopTabs />
+        </NavigationContainer>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );
