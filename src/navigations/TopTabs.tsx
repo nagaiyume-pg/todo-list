@@ -1,5 +1,4 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { SafeAreaView, StyleSheet } from 'react-native';
 
 import { FinishedScreen, UnfinishedScreen } from '@/screens';
 

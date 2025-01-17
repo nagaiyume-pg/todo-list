@@ -1,6 +1,5 @@
-import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DraggableFlatList, {
     ScaleDecorator,
     ShadowDecorator,
@@ -10,7 +9,7 @@ import DraggableFlatList, {
 
 import { mapIndexToData, Item } from "@/utils";
 
-const NUM_ITEMS = 100;
+const NUM_ITEMS = 10;
 
 const initialData: Item[] = [...Array(NUM_ITEMS)].map(mapIndexToData);
 
@@ -42,26 +41,19 @@ export const UnfinishedScreen = () => {
     []);
 
     return (
-        <SafeAreaView style={styles.safearea}>
-            <StatusBar style="auto" />
-            <DraggableFlatList
-                data={data}
-                onDragEnd={({ data }) => setData(data)}
-                keyExtractor={(item) => item.key}
-                renderItem={renderItem}
-                renderPlaceholder={() => (
-                    <View style={{ flex: 1, backgroundColor: "tomato" }} />
-                )}
-            />
-        </SafeAreaView>
+        <DraggableFlatList
+            data={data}
+            onDragEnd={({ data }) => setData(data)}
+            keyExtractor={(item) => item.key}
+            renderItem={renderItem}
+            renderPlaceholder={() => (
+                <View style={{ flex: 1, backgroundColor: "tomato" }} />
+            )}
+        />
     );
 }
 
 const styles = StyleSheet.create({
-    safearea: {
-        backgroundColor: "white",
-        flex: 1
-    },
     rowItem: {
         height: 100,
         alignItems: "center",
