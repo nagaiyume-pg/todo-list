@@ -7,12 +7,10 @@ const Tab = createMaterialTopTabNavigator();
 
 export const TopTabs = () => {
     return (
-        <SafeAreaView style={styles.safearea}>
-            <Tab.Navigator>
-                <Tab.Screen name="未完了" component={UnfinishedScreen} />
-                <Tab.Screen name="完了済み" component={FinishedScreen} />
-            </Tab.Navigator>
-        </SafeAreaView>
+        <Tab.Navigator>
+            <Tab.Screen name="未完了" component={UnfinishedScreen} />
+            <Tab.Screen name="完了済み" component={FinishedScreen} />
+        </Tab.Navigator>
     );
 }
 
