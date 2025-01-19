@@ -1,20 +1,17 @@
-import { StyleSheet } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
+import { AppProvider } from '@/context';
+import Main from '@/navigations';
 
-import { TodoScreen } from '@/screens';
-
-export default function App() {
+// アプリ
+function App() {
   return (
-    <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-        <NavigationContainer>
-          <SafeAreaProvider>
-            <StatusBar style="auto" />
-            <TodoScreen />
-          </SafeAreaProvider>
-        </NavigationContainer>
-    </GestureHandlerRootView>
+    <NavigationContainer>
+      <AppProvider>
+          <Main/>
+      </AppProvider>
+    </NavigationContainer>
   );
 }
+
+export default App;
