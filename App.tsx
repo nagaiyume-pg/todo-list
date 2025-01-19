@@ -5,16 +5,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
 import { TodoScreen } from '@/screens';
+import { TodoProvider } from '@/context';
 
 export default function App() {
   return (
     <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-        <NavigationContainer>
-          <SafeAreaProvider>
-            <StatusBar style="auto" />
-            <TodoScreen />
-          </SafeAreaProvider>
-        </NavigationContainer>
+        <TodoProvider>
+          <NavigationContainer>
+            <SafeAreaProvider>
+              <StatusBar style="auto" />
+              <TodoScreen />
+            </SafeAreaProvider>
+          </NavigationContainer>
+        </TodoProvider>
     </GestureHandlerRootView>
   );
 }

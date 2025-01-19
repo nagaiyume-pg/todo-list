@@ -3,56 +3,57 @@ import React, { useContext, useState } from 'react';
 import { SafeAreaView, StyleSheet, Alert } from 'react-native';
 
 import { AddButton, Header, TodoItem } from '@/components';
+import { useTodoContext } from '@/context';
 
-const initialData: TodoProps[] = [];
 
 export const TodoScreen = () => {
-    const [data, setData] = useState<TodoProps[]>(initialData);  // useStateで型を指定
+    const { todos, setTodos } = useTodoContext();
 
     // アイテムの追加
     const handleAddItem = () => {
-        const newItem: TodoProps = { title: `New Item ${data.length + 1}`, isChecked: false };
-        setData(prevData => [...prevData, newItem]);
+        const newTodo: TodoProps = { title: `New Item ${todos.length + 1}`, isChecked: false };
+        setTodos([...todos, newTodo]);
     };
 
     // アイテムの削除
     const handleDeleteItem = (index: number) => {
-        const itemToDelete = data[index]; // 削除対象のアイテムを取得
+        const itemToDelete = todos[index];
 
         Alert.alert(
-            "削除確認", // アラートのタイトル
-            `本当に「${itemToDelete.title}」を削除しますか?`, // タスク名を含めたメッセージ
+            `「${itemToDelete.title}」の削除確認`, // アラートのタイトル
+            `本当に「${itemToDelete.title}」を削除しますか?`,
             [
                 {
-                    text: "キャンセル", // キャンセルボタン
+                    text: "キャンセル",
                     style: "cancel"
                 },
                 {
-                    text: "削除", // 削除ボタン
-                    style: "destructive", // 削除ボタンを赤色に
+                    text: "削除",
+                    style: "destructive",
                     onPress: () => {
-                        setData(prevData => prevData.filter((_, i) => i !== index)); // アイテムを削除
+                        setTodos(todos.filter((_, i) => i !== index));
                     }
                 }
             ],
-            { cancelable: false } // 背景をタップしてアラートを閉じられないように
+            { cancelable: false }
         );
     };
 
     // チェックボックスの状態を変更
     const handleCheckItem = (index: number) => {
-        setData(prevData => {
-            const updatedData = [...prevData];
-            updatedData[index].isChecked = !updatedData[index].isChecked;
-            return updatedData;
-        });
+        setTodos(todos.map((_, i) => {
+            if (i === index) {
+                return { ..._, isChecked: !_.isChecked };
+            }
+            return _;
+        }));
     };
 
     return (
         <SafeAreaView style={styles.safearea}>
             <Header />
             <FlashList
-                data={data}
+                data={todos}
                 renderItem={({ item, index }) => (
                     <TodoItem
                         title={item.title}
