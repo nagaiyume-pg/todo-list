@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         color: '#9e9e9e'
     },
     checkboxContainer: {
-        margin: 0,
+        marginVertical: 0,
         marginHorizontal: 10,
         padding: 0
     },

@@ -1,3 +1,3 @@
-export * from './FinishedScreen';
+export * from './CompletedScreen';
 export * from './TodoScreen';
-export * from './UnfinishedScreen';
+export * from './IncompleteScreen';

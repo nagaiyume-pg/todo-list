@@ -1,17 +1,9 @@
 import { FlashList } from '@shopify/flash-list';
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { SafeAreaView, View, StyleSheet, Alert } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { SafeAreaView, StyleSheet, Alert } from 'react-native';
 
 import { AddButton, Header, TodoItem } from '@/components';
 
-// Todoの型を定義
-interface TodoProps {
-    title: string;
-    isChecked: boolean;
-}
-
-// 初期データをTodo型の空配列として設定
 const initialData: TodoProps[] = [];
 
 export const TodoScreen = () => {
@@ -25,9 +17,11 @@ export const TodoScreen = () => {
 
     // アイテムの削除
     const handleDeleteItem = (index: number) => {
+        const itemToDelete = data[index]; // 削除対象のアイテムを取得
+
         Alert.alert(
             "削除確認", // アラートのタイトル
-            "本当にこのアイテムを削除しますか?", // アラートのメッセージ
+            `本当に「${itemToDelete.title}」を削除しますか?`, // タスク名を含めたメッセージ
             [
                 {
                     text: "キャンセル", // キャンセルボタン
@@ -56,22 +50,19 @@ export const TodoScreen = () => {
 
     return (
         <SafeAreaView style={styles.safearea}>
-            <StatusBar style="auto" />
-            <View style={styles.container}>
-                <Header />
-                <FlashList
-                    data={data}
-                    renderItem={({ item, index }) => (
-                        <TodoItem
-                            title={item.title}
-                            isChecked={item.isChecked}
-                            onCheck={() => handleCheckItem(index)}
-                            onDelete={() => handleDeleteItem(index)} // 削除ボタンが押されたときにhandleDeleteItemを呼び出す
-                        />
-                    )}
-                    estimatedItemSize={200}
-                />
-            </View>
+            <Header />
+            <FlashList
+                data={data}
+                renderItem={({ item, index }) => (
+                    <TodoItem
+                        title={item.title}
+                        isChecked={item.isChecked}
+                        onCheck={() => handleCheckItem(index)}
+                        onDelete={() => handleDeleteItem(index)} // 削除ボタンが押されたときにhandleDeleteItemを呼び出す
+                    />
+                )}
+                estimatedItemSize={200}
+            />
             <AddButton onPress={handleAddItem} />
         </SafeAreaView>
     );
@@ -79,10 +70,6 @@ export const TodoScreen = () => {
 
 const styles = StyleSheet.create({
     safearea: {
-        backgroundColor: 'white',
-        flex: 1
-    },
-    container: {
         backgroundColor: 'white',
         flex: 1
     }
