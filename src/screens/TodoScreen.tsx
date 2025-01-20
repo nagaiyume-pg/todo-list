@@ -1,7 +1,10 @@
 import { FlashList } from '@shopify/flash-list';
 import { useState } from 'react';
-import { SafeAreaView, StyleSheet, Alert } from 'react-native';
+import { SafeAreaView, StyleSheet, Alert, View } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import { Icon } from '@rneui/themed';
+import { Text } from 'react-native';
+
 import { AddButton, Header, TodoItem } from '@/components';
 import { useTodoContext } from '@/context';
 
@@ -78,6 +81,18 @@ export const TodoScreen = () => {
         <SafeAreaView style={styles.safeArea}>
             <Header />
             <TabView
+                commonOptions={{
+                    label: ({ labelText, color}) => (
+                        <View style={styles.label}>
+                            {labelText == '未完了' ?
+                                <Icon name="checkbox-blank-outline" color={color} type='material-community' size={20} />
+                                :
+                                <Icon name="checkbox-outline" color={color} type='material-community' size={20} />
+                            }
+                            <Text style={{ color }}>{labelText}</Text>
+                        </View>
+                    ),
+                }}
                 navigationState={{ index, routes }}
                 renderScene={renderScene}
                 onIndexChange={setIndex}
@@ -105,7 +120,15 @@ const styles = StyleSheet.create({
     tabBar: {
         backgroundColor: 'white',
         elevation: 0,
-        height: 30
+        height: 30,
+        borderBottomColor: '#d1d5db',
+        borderBottomWidth: 1,
+        borderStyle: 'solid',
+        // 影を無効化する
+        shadowColor: 'transparent',
+        shadowOpacity: 0,
+        shadowOffset: {"height": 0,"width": 0},
+        shadowRadius: 0
     },
     tab: {
         minHeight: 30,
@@ -113,5 +136,14 @@ const styles = StyleSheet.create({
     },
     indicator: {
         backgroundColor: '#3b82f6'
-    }
+    },
+    label: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        gap: 5,
+        height: 30
+    },
+    labelText: {
+        fontSize: 14,
+    },
 });
