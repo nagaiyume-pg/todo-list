@@ -25,12 +25,13 @@ export const TodoItem = (props: TodoItemProps) => {
                 uncheckedIcon='checkbox-blank-outline'
                 wrapperStyle={styles.checkboxWrapper}
             />
-            <Text style={[styles.title, isChecked && styles.strikeThrough]}>
-                {title}
-            </Text>
+            <View style={styles.titleContainer}>
+                <Text style={[styles.title, isChecked && styles.strikeThrough]}>
+                    {title}
+                </Text>
+            </View>
             <Button
                 buttonStyle={styles.button}
-                containerStyle={styles.container}
                 icon={{
                     name: 'delete',
                     type: 'material',
@@ -40,13 +41,6 @@ export const TodoItem = (props: TodoItemProps) => {
                 iconContainerStyle={styles.iconContainer}
                 onPress={onDelete}
             />
-            {/*
-            <Icon
-                color="red"
-                name="delete"
-                onPress={onDelete}
-                size={20}
-            />*/}
         </View>
     );
 }
@@ -62,6 +56,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    titleContainer: {
+        flex: 1
+    },
     title: {
         fontSize: 16,
     },
@@ -70,23 +67,22 @@ const styles = StyleSheet.create({
         color: '#9e9e9e'
     },
     checkboxContainer: {
-        marginVertical: 0,
-        marginHorizontal: 10,
-        padding: 0
+        margin: 0,
+        marginLeft: 0,
+        marginRight: 0,
+        padding: 0,
     },
     checkboxWrapper: {
-        height: 24,
-        width: 24
+        height: 49,
+        width: 50,
+        justifyContent: 'center',
     },
     button: {
-        backgroundColor: 'transparent',
-        height: 24,
-        width: 24
-    },
-    container: {
-        marginHorizontal: 10
+        backgroundColor: 'white',
+        paddingVertical: 12.5,
     },
     iconContainer: {
+        marginHorizontal: 0,
         height: 24,
         width: 24
     }
