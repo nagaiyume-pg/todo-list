@@ -11,9 +11,6 @@ export const Header = () => {
 const styles = StyleSheet.create({
     header: {
         alignItems: 'center',
-        borderBottomColor: '#d1d5db',
-        borderBottomWidth: 1,
-        borderStyle: 'solid',
         display: 'flex',
         height: 50,
         justifyContent: 'center',
