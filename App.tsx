@@ -6,18 +6,21 @@ import { StatusBar } from 'expo-status-bar';
 
 import { TodoScreen } from '@/screens';
 import { TodoProvider } from '@/context';
+import { StrictMode } from 'react';
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-        <TodoProvider>
-          <NavigationContainer>
-            <SafeAreaProvider>
-              <StatusBar style="auto" />
-              <TodoScreen />
-            </SafeAreaProvider>
-          </NavigationContainer>
-        </TodoProvider>
-    </GestureHandlerRootView>
+    <StrictMode>
+      <GestureHandlerRootView style={StyleSheet.absoluteFill}>
+          <TodoProvider>
+            <NavigationContainer>
+              <SafeAreaProvider>
+                <StatusBar style="auto" />
+                <TodoScreen />
+              </SafeAreaProvider>
+            </NavigationContainer>
+          </TodoProvider>
+      </GestureHandlerRootView>
+    </StrictMode>
   );
 }
