@@ -1,5 +1,4 @@
 import { FlashList } from '@shopify/flash-list';
-import React, { useContext, useState } from 'react';
 import { SafeAreaView, StyleSheet, Alert } from 'react-native';
 
 import { AddButton, Header, TodoItem } from '@/components';
