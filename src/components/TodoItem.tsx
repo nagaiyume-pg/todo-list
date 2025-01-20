@@ -47,6 +47,7 @@ export const TodoItem = (props: TodoItemProps) => {
 
 const styles = StyleSheet.create({
     todoItem: {
+        backgroundColor: 'white',
         borderBottomColor: '#d1d5db',
         borderBottomWidth: 1,
         borderStyle: 'solid',
