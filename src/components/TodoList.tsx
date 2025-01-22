@@ -3,9 +3,8 @@ import React from 'react';
 import { FlashList } from '@shopify/flash-list';
 import { TodoItem, TodoItemProps } from '@/components'; // TodoItem コンポーネントをインポート
 
-interface TodoListProps extends Omit<TodoItemProps, 'onCheck' | 'onDelete'> {
+interface TodoListProps {
     todos: { id: number; title: string; isChecked: boolean }[];
-    // TODO:onCheckとonDeleteがTodoItemPropsから継承が出来るようにしたい
     onCheck: (id: number) => void;
     onDelete: (id: number) => void;
 }
