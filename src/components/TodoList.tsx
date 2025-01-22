@@ -1,7 +1,7 @@
 // TodoList.tsx
 import React from 'react';
 import { FlashList } from '@shopify/flash-list';
-import { TodoItem, TodoItemProps } from '@/components'; // TodoItem コンポーネントをインポート
+import { TodoItem } from '@/components'; // TodoItem コンポーネントをインポート
 
 interface TodoListProps {
     todos: { id: number; title: string; isChecked: boolean }[];
