@@ -51,8 +51,8 @@ export const TodoScreen = () => {
     const completedTodos = todos.filter(todo => todo.isChecked);
 
     const renderScene = SceneMap({
-        incomplete: () => <TodoList todosList={incompleteTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />,
-        completed: () =>    <TodoList todosList={completedTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />,
+        incomplete: () => <TodoList todos={incompleteTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />,
+        completed: () =>    <TodoList todos={completedTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />,
     });
 
     const [index, setIndex] = useState(0);
