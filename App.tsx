@@ -10,17 +10,15 @@ import { StrictMode } from 'react';
 
 export default function App() {
   return (
-    <StrictMode>
-      <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-          <TodoProvider>
-            <NavigationContainer>
-              <SafeAreaProvider>
-                <StatusBar style="auto" />
-                <TodoScreen />
-              </SafeAreaProvider>
-            </NavigationContainer>
-          </TodoProvider>
-      </GestureHandlerRootView>
-    </StrictMode>
+    <GestureHandlerRootView style={StyleSheet.absoluteFill}>
+        <TodoProvider>
+          <NavigationContainer>
+            <SafeAreaProvider>
+              <StatusBar style="auto" />
+              <TodoScreen />
+            </SafeAreaProvider>
+          </NavigationContainer>
+        </TodoProvider>
+    </GestureHandlerRootView>
   );
 }
