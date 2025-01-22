@@ -11,7 +11,9 @@
   "dependencies": {
     "@babel/preset-env": "^7.26.0",
     "@babel/runtime": "*",
+    "@expo-google-fonts/noto-sans-jp": "^0.2.3",
     "@expo/metro-runtime": "~4.0.1",
+    "@expo/prebuild-config": "^8.0.25",
     "@expo/vector-icons": "14.0.0",
     "@react-navigation/drawer": "^7.1.1",
     "@react-navigation/material-top-tabs": "^7.1.0",
@@ -21,6 +23,8 @@
     "@shopify/flash-list": "1.7.1",
     "add": "^2.0.6",
     "expo": "~52.0.26",
+    "expo-app-loading": "^2.1.1",
+    "expo-modules-autolinking": "^2.0.7",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
