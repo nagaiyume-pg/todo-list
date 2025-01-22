@@ -1,11 +1,11 @@
 import { Button, CheckBox } from "@rneui/themed";
-import { StyleSheet, Text, View } from "react-native";
+import { GestureResponderEvent, StyleSheet, Text, View } from "react-native";
 
 export interface TodoItemProps {
     title: string;
     isChecked: boolean;
-    onCheck: () => void;
-    onDelete: () => void;
+    onCheck: (event: GestureResponderEvent) => void;
+    onDelete: (event: GestureResponderEvent) => void;
 }
 
 export const TodoItem = (props: TodoItemProps) => {
