@@ -1,7 +1,7 @@
 import { Button, CheckBox } from "@rneui/themed";
 import { StyleSheet, Text, View } from "react-native";
 
-interface TodoItemProps {
+export interface TodoItemProps {
     title: string;
     isChecked: boolean;
     onCheck: () => void;

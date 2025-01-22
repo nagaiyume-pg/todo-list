@@ -1,11 +1,10 @@
-import { FlashList } from '@shopify/flash-list';
 import { useState } from 'react';
 import { SafeAreaView, StyleSheet, Alert, View } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Icon } from '@rneui/themed';
 import { Text } from 'react-native';
 
-import { AddButton, Header, TodoItem } from '@/components';
+import { AddButton, Header, TodoList } from '@/components';
 import { useTodoContext } from '@/context';
 
 export const TodoScreen = () => {
@@ -51,24 +50,9 @@ export const TodoScreen = () => {
     const incompleteTodos = todos.filter(todo => !todo.isChecked);
     const completedTodos = todos.filter(todo => todo.isChecked);
 
-    const renderTabContent = (todosList: TodoProps[]) => (
-        <FlashList
-            data={todosList}
-            renderItem={({ item }) => (
-                <TodoItem
-                    title={item.title}
-                    isChecked={item.isChecked}
-                    onCheck={() => handleCheckTodo(item.id)}
-                    onDelete={() => handleDeleteTodo(item.id)}
-                />
-            )}
-            estimatedItemSize={200}
-        />
-    );
-
     const renderScene = SceneMap({
-        incomplete: () => renderTabContent(incompleteTodos),
-        completed: () => renderTabContent(completedTodos),
+        incomplete: () => <TodoList todosList={incompleteTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />,
+        completed: () =>    <TodoList todosList={completedTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />,
     });
 
     const [index, setIndex] = useState(0);
