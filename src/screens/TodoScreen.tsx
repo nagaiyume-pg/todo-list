@@ -1,10 +1,5 @@
-import { useState } from 'react';
 import { SafeAreaView, StyleSheet, Alert, View } from 'react-native';
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { Icon } from '@rneui/themed';
-import { Text } from 'react-native';
-
-import { AddButton, Header, TodoList } from '@/components';
+import { AddButton, Header, TabView, TodoList } from '@/components';
 import { useTodoContext } from '@/context';
 
 export const TodoScreen = () => {
@@ -50,47 +45,17 @@ export const TodoScreen = () => {
     const incompleteTodos = todos.filter(todo => !todo.isChecked);
     const completedTodos = todos.filter(todo => todo.isChecked);
 
-    const renderScene = SceneMap({
-        incomplete: () => <TodoList todos={incompleteTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />,
-        completed: () =>    <TodoList todos={completedTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />,
-    });
-
-    const [index, setIndex] = useState(0);
-    const [routes] = useState([
-        { key: 'incomplete', title: '未完了' },
-        { key: 'completed', title: '完了済み' },
-    ]);
-
     return (
         <SafeAreaView style={styles.safeArea}>
-            <Header />
-            <TabView
-                commonOptions={{
-                    label: ({ labelText, color}) => (
-                        <View style={styles.label}>
-                            {labelText == '未完了' ?
-                                <Icon name="checkbox-blank-outline" color={color} type='material-community' size={20} />
-                                :
-                                <Icon name="checkbox-outline" color={color} type='material-community' size={20} />
-                            }
-                            <Text style={{ color }}>{labelText}</Text>
-                        </View>
-                    ),
-                }}
-                navigationState={{ index, routes }}
-                renderScene={renderScene}
-                onIndexChange={setIndex}
-                renderTabBar={props => (
-                    <TabBar
-                        {...props}
-                        style={styles.tabBar} // タブバーのスタイル
-                        indicatorStyle={styles.indicator} // インジケーターのスタイル
-                        activeColor="#6b7280"
-                        inactiveColor="#d1d5db"
-                        tabStyle={styles.tab}
-                    />
-                )}
-            />
+            <View style={styles.container}>
+                <Header />
+                <TabView />
+                <TodoList
+                    todos={incompleteTodos}
+                    onCheck={handleCheckTodo}
+                    onDelete={handleDeleteTodo}
+                />
+                </View>
             <AddButton onPress={handleAddTodo} />
         </SafeAreaView>
     );
@@ -98,6 +63,10 @@ export const TodoScreen = () => {
 
 const styles = StyleSheet.create({
     safeArea: {
+        backgroundColor: 'white',
+        flex: 1,
+    },
+    container: {
         backgroundColor: 'white',
         flex: 1,
     },
