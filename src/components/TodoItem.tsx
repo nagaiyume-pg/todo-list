@@ -1,45 +1,72 @@
 import { Button, CheckBox } from "@rneui/themed";
 import { GestureResponderEvent, StyleSheet, Text, View } from "react-native";
 
-export interface TodoItemProps {
-    title: string;
+interface CheckboxProps {
     isChecked: boolean;
     onCheck: (event: GestureResponderEvent) => void;
+}
+
+interface DeleteButtonProps {
     onDelete: (event: GestureResponderEvent) => void;
 }
 
+export interface TodoItemProps extends CheckboxProps, DeleteButtonProps {
+    title: string;
+}
+
+export const Checkbox = (props: CheckboxProps) => {
+    const { onCheck, isChecked } = props;
+
+    return(
+        <CheckBox
+            checked={isChecked}
+            checkedColor='#3b82f6'
+            checkedIcon='checkbox-outline'
+            containerStyle={styles.checkboxContainer}
+            iconType='material-community'
+            onPress={onCheck}
+            size={24}
+            uncheckedColor='#d1d5db'
+            uncheckedIcon='checkbox-blank-outline'
+            wrapperStyle={styles.checkboxWrapper}
+        />
+    )
+}
+
+export const DeleteButton = (props: DeleteButtonProps) => {
+    const { onDelete } = props;
+
+    return(
+        <Button
+            buttonStyle={styles.button}
+            icon={{
+                name: 'delete',
+                type: 'material',
+                size: 24,
+                color: 'red',
+            }}
+            iconContainerStyle={styles.iconContainer}
+            onPress={onDelete}
+        />
+    )
+}
+
 export const TodoItem = (props: TodoItemProps) => {
-    const { isChecked, onCheck, onDelete, title } = props;
+    const { title, isChecked, onCheck, onDelete } = props;
 
     return (
         <View style={styles.todoItem}>
-            <CheckBox
-                checked={isChecked}
-                checkedColor='#3b82f6'
-                checkedIcon='checkbox-outline'
-                containerStyle={styles.checkboxContainer}
-                iconType='material-community'
-                onPress={onCheck}
-                size={24}
-                uncheckedColor='#d1d5db'
-                uncheckedIcon='checkbox-blank-outline'
-                wrapperStyle={styles.checkboxWrapper}
+            <Checkbox
+                isChecked={isChecked}
+                onCheck={onCheck}
             />
             <View style={styles.titleContainer}>
                 <Text style={[styles.title, isChecked && styles.strikeThrough]}>
                     {title}
                 </Text>
             </View>
-            <Button
-                buttonStyle={styles.button}
-                icon={{
-                    name: 'delete',
-                    type: 'material',
-                    size: 24,
-                    color: 'red',
-                }}
-                iconContainerStyle={styles.iconContainer}
-                onPress={onDelete}
+            <DeleteButton
+                onDelete={onDelete}
             />
         </View>
     );
