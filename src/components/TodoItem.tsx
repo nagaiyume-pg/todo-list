@@ -14,7 +14,7 @@ export interface TodoItemProps extends CheckboxProps, DeleteButtonProps {
     title: string;
 }
 
-export const Checkbox = (props: CheckboxProps) => {
+const Checkbox = (props: CheckboxProps) => {
     const { onCheck, isChecked } = props;
 
     return(
@@ -33,7 +33,7 @@ export const Checkbox = (props: CheckboxProps) => {
     )
 }
 
-export const DeleteButton = (props: DeleteButtonProps) => {
+const DeleteButton = (props: DeleteButtonProps) => {
     const { onDelete } = props;
 
     return(
