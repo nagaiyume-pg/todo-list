@@ -1,5 +1,5 @@
 import { SafeAreaView, StyleSheet, Alert, View } from 'react-native';
-import { AddButton, Header, TabView, TodoList } from '@/components';
+import { AddButton, Header, TabsView, TodoList } from '@/components';
 import { useTodoContext } from '@/context';
 
 export const TodoScreen = () => {
@@ -49,7 +49,7 @@ export const TodoScreen = () => {
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
                 <Header />
-                <TabView />
+                <TabsView />
                 <TodoList
                     todos={incompleteTodos}
                     onCheck={handleCheckTodo}

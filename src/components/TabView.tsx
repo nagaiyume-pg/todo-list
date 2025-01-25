@@ -1,60 +1,71 @@
-import { Icon } from "@rneui/themed"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { useLocale } from '@react-navigation/native';
+import * as React from 'react';
+import { StyleSheet } from 'react-native';
+import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 
-const Tab = () => {
-    return (
-        <View style={styles.tab}>
-            <TouchableOpacity style={styles.labelButton}>
-                <View style={styles.label}>
-                    <Icon name="checkbox-blank-outline" color={'red'} type='material-community' size={20} />
-                    <Text style={styles.labelText}>未完了</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-    );
-}
+import { TodoList, TodoListProps } from './TodoList';
+import { useTodoContext } from '@/context';
 
-const Tabbar = () => {
-    return (
-        <View style={styles.tabbar}>
-            <Tab /><Tab />
-        </View>
-    );
-}
+interface Route {
+    key: string;
+    title: string;
+};
 
-export const TabView = () => {
-    return (
-        <Tabbar />
+export const TabsView = (props: TodoListProps) => {
+    const { direction } = useLocale();
+    const [index, onIndexChange] = React.useState(0);
+    const [routes] = React.useState([
+        { key: 'article', title: 'Article' },
+        { key: 'contacts', title: 'Contacts' },
+    ]);
+    const { todos } = useTodoContext();
+    const { onCheck, onDelete } = props;
+
+    const renderScene = SceneMap({
+        albums: () => <TodoList todos={todos} onCheck={onCheck} onDelete={onDelete} />,
+        contacts: () => <TodoList todos={todos}onCheck={onCheck} onDelete={onDelete} />,
+    });
+
+    const renderTabBar: React.ComponentProps<
+        typeof TabView<Route>
+    >['renderTabBar'] = (props) => (
+        <TabBar
+            {...props}
+            scrollEnabled
+            indicatorStyle={styles.indicator}
+            style={styles.tabbar}
+            contentContainerStyle={styles.tabbarContentContainer}
+            tabStyle={styles.tabStyle}
+            gap={20}
+            direction={direction}
+        />
     );
-}
+
+    return (
+        <TabView<Route>
+            navigationState={{
+                index,
+                routes,
+            }}
+            direction={direction}
+            renderScene={renderScene}
+            renderTabBar={renderTabBar}
+            onIndexChange={onIndexChange}
+        />
+    );
+};
 
 const styles = StyleSheet.create({
     tabbar: {
-        backgroundColor: 'white',
-        borderBlockColor: '#d1d5db',
-        borderBottomWidth: 1,
-        borderStyle: 'solid',
-        display: 'flex',
-        flexDirection: 'row',
-        height: 30,
+        backgroundColor: '#3f51b5',
     },
-    tab: {
-        backgroundColor: 'blue',
-        flex: 1,
-        height: 30,
+    tabbarContentContainer: {
+        paddingHorizontal: 10,
     },
-    labelButton: {
-        backgroundColor: 'yellow',
-        flexDirection: 'row', // アイコンとテキストを横並びにする
-        alignItems: 'center', // アイコンとテキストを縦方向に中央揃え
-        paddingHorizontal: 10, // アイコンとテキストにパディングを追加
+    indicator: {
+        backgroundColor: '#ffeb3b',
     },
-    label: {
-        flexDirection: 'row',
-        alignItems: 'center', // アイコンとテキストを縦方向に中央揃え
-        gap: 5, // アイコンとテキストの間隔
-    },
-    labelText: {
-        fontSize: 14,
+    tabStyle: {
+        width: 'auto',
     },
 });
