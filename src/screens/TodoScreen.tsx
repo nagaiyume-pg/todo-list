@@ -69,34 +69,5 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         flex: 1,
-    },
-    tabBar: {
-        backgroundColor: 'white',
-        elevation: 0,
-        height: 30,
-        borderBottomColor: '#d1d5db',
-        borderBottomWidth: 1,
-        borderStyle: 'solid',
-        // 影を無効化する
-        shadowColor: 'transparent',
-        shadowOpacity: 0,
-        shadowOffset: {"height": 0,"width": 0},
-        shadowRadius: 0
-    },
-    tab: {
-        minHeight: 30,
-        padding: 0
-    },
-    indicator: {
-        backgroundColor: '#3b82f6'
-    },
-    label: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        gap: 5,
-        height: 30
-    },
-    labelText: {
-        fontSize: 14,
-    },
+    }
 });
