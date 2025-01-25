@@ -4,7 +4,7 @@ import { FlashList } from '@shopify/flash-list';
 
 import { TodoItem } from './TodoItem'; // TodoItem コンポーネントをインポート
 
-interface TodoListProps {
+export interface TodoListProps {
     todos: { id: number; title: string; isChecked: boolean }[];
     onCheck: (id: number) => void;
     onDelete: (id: number) => void;
