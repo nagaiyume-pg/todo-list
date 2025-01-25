@@ -76,31 +76,6 @@ export const TodoScreen = () => {
         completed: () => <TodoList todos={completedTodos} onCheck={handleCheckTodo} onDelete={handleDeleteTodo} />
     })
 
-    const renderIndicator = (props: TabBarIndicatorProps<Route>) => {
-        const { position, getTabWidth, gap, width, style } = props;
-
-        // 入力範囲を最適化（0から2の範囲を十分にカバー）
-        const inputRange = [
-            0, 0.48, 0.49, 0.51, 0.52, 1, 1.48, 1.49, 1.51, 1.52, 2,
-            ];  // インジケーターのアニメーション範囲
-
-        // translateX: アクティブタブに基づいてインジケーターの位置を動かす
-        const translateX = position.interpolate({
-            inputRange,
-            outputRange: inputRange.map((x) => {
-                const index = Math.round(x);  // タブのインデックスを取得
-                return (
-                    (index * getTabWidth(index) + index * (gap ?? 0)) *
-                    (direction === 'rtl' ? -1 : 1)  // RTLの場合、反転させる
-                );
-            }),
-        });
-
-        return(
-            <Animated.View style={{ backgroundColor: 'red', display: 'flex', width: width, height: 2, transform: [{ translateX }] }}></Animated.View>
-        )
-    };
-
     const renderTabBar = (props: TabBarProps<Route>) => {
         return(
             <TabBar
@@ -111,7 +86,6 @@ export const TodoScreen = () => {
                 contentContainerStyle={styles.contentContainer}  // TabBar内のコンテンツコンテナ部分のスタイルを設定
                 tabStyle={styles.tabStyle}  // 個々のタブのスタイルを設定
                 gap={200}  // タブ間のスペースを200に設定（タブ同士の間隔を広げる）
-                renderIndicator={renderIndicator}
                 direction={direction}
             />
         )

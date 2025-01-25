@@ -6,7 +6,6 @@ import { StatusBar } from 'expo-status-bar';
 
 import { TodoScreen } from '@/screens';
 import { TodoProvider } from '@/context';
-import { TestScreen } from '@/screens/TestScreen';
 
 export default function App() {
   return (
@@ -15,7 +14,7 @@ export default function App() {
           <NavigationContainer>
             <SafeAreaProvider>
               <StatusBar style="auto" />
-              <TestScreen />
+              <TodoScreen />
             </SafeAreaProvider>
           </NavigationContainer>
         </TodoProvider>
