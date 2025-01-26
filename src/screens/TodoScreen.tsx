@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { SafeAreaView, StyleSheet, Alert, View, Animated } from 'react-native';
-import { SceneMap, TabBar, TabView, type TabBarIndicatorProps, type TabBarProps } from 'react-native-tab-view';
-import { useLocale } from '@react-navigation/native';
+import { useCallback, useMemo, useState } from 'react';
+import { SafeAreaView, StyleSheet, Alert, View } from 'react-native';
+import { SceneMap, TabBar, TabView, type TabBarProps } from 'react-native-tab-view';
 
 import { AddButton, Header, TodoList } from '@/components';
 import { useTodoContext } from '@/context';
@@ -17,8 +16,7 @@ export const TodoScreen = () => {
     const [routes] = useState<Route[]>([
         { key: 'incomplete', title: '未完成' },
         { key: 'completed', title: '完成済み' },
-    ])
-     const { direction } = useLocale();  // ロケール（文字の方向）を取得
+    ]);
 
     /**
      * Todoを追加する関数
@@ -31,7 +29,8 @@ export const TodoScreen = () => {
             isChecked: false,
         };
         setTodos([...todos, newTodo]);
-    };
+        console.log("Add Todo!")
+    }
 
     /**
      * Todoを削除する関数
@@ -83,10 +82,9 @@ export const TodoScreen = () => {
                 scrollEnabled={false}  // タブバーのスクロールを無効にする
                 indicatorStyle={styles.indicator}  // インジケーター（アクティブタブ下のライン）のスタイルを設定
                 style={styles.tabbar}  // TabBar全体のスタイルを設定
-                contentContainerStyle={styles.contentContainer}  // TabBar内のコンテンツコンテナ部分のスタイルを設定
                 tabStyle={styles.tabStyle}  // 個々のタブのスタイルを設定
-                gap={200}  // タブ間のスペースを200に設定（タブ同士の間隔を広げる）
-                direction={direction}
+                activeColor='#38bdf8'
+                inactiveColor='gray'
             />
         )
     }
@@ -103,7 +101,6 @@ export const TodoScreen = () => {
                     renderScene={renderScene}
                     renderTabBar={renderTabBar}
                     onIndexChange={onIndexChange}
-                    direction={direction}
                 />
                 <AddButton onPress={handleAddTodo} />
             </View>
@@ -121,26 +118,17 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     tabbar: {
-        backgroundColor: '#3f51b5',
+        // backgroundColor: '#2563eb',
+        backgroundColor: 'white',
         height: 30,
     },
-    contentContainer: {
-        paddingLeft: 10,
-        paddingRight: 150,
-        width: 'auto',
-    },
     tabStyle: {
-        padding: 0,
-        paddingLeft: 1,
-        minHeight: 30,
-        width: 'auto',
-    },
-    indicatorContainer: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        padding: 0,
+        minHeight: 30,
     },
     indicator: {
-        backgroundColor: '#ffeb3b',
+        backgroundColor: '#38bdf8',
+        height: 4
     },
 });
