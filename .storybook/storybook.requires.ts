@@ -8,15 +8,15 @@ import '@storybook/addon-ondevice-actions/register';
 const normalizedStories = [
   {
     titlePrefix: '',
-    directory: './.storybook/stories',
+    directory: './src/components',
     files: '**/*.stories.?(ts|tsx|js|jsx)',
     importPathMatcher:
-      /^\.(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?\.stories\.(?:ts|tsx|js|jsx)?)$/,
+      /^\.(?:(?:^|[\\/]|(?:(?:(?!(?:^|[\\/])\.).)*?)[\\/])(?!\.)(?=.)[^\\/]*?\.stories\.(?:ts|tsx|js|jsx)?)$/,
     // @ts-ignore
     req: require.context(
-      './stories',
+      '../src/components',
       true,
-      /^\.(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?\.stories\.(?:ts|tsx|js|jsx)?)$/
+      /^\.(?:(?:^|[\\/]|(?:(?:(?!(?:^|[\\/])\.).)*?)[\\/])(?!\.)(?=.)[^\\/]*?\.stories\.(?:ts|tsx|js|jsx)?)$/
     ),
   },
 ];
@@ -28,8 +28,8 @@ declare global {
 
 const annotations = [
   require('./preview'),
-  require('@storybook/react-native/dist/preview'),
-  require('@storybook/addon-actions/preview'),
+  require('@storybook/react-native/preview'),
+  require('@storybook/addon-ondevice-actions/preview'),
 ];
 
 global.STORIES = normalizedStories;

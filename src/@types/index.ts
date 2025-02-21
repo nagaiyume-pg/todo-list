@@ -1,5 +1,5 @@
 type TodoProps = {
-    id: number;
-    title: string;
-    isChecked: boolean;
-}
+  id: number;
+  title: string;
+  isChecked: boolean;
+};
