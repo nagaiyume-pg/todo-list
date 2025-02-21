@@ -72,6 +72,9 @@ importers:
       '@storybook/addon-ondevice-controls':
         specifier: 8.5.5
         version: 8.5.5(239c4b402fe11152e2ea0cce16c4dfab)
+      '@storybook/react':
+        specifier: ^8.5.8
+        version: 8.5.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.5.8(prettier@2.8.8))(typescript@5.7.3)
       '@storybook/react-native':
         specifier: 8.5.5
         version: 8.5.5(777a46f7069eab9a7f41da26e04ab9bc)
