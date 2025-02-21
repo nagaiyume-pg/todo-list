@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { TodoScreen } from '@/screens';
 import { TodoProvider } from '@/context';
 
-export default function App() {
+function App() {
   return (
     <GestureHandlerRootView style={StyleSheet.absoluteFill}>
         <TodoProvider>
@@ -21,3 +21,11 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
+
+let AppEntryPoint = App;
+
+if (process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === 'true') {
+  AppEntryPoint = require('../.storybook').default;
+}
+
+export default AppEntryPoint;
