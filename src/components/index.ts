@@ -1,2 +1,3 @@
-export * from './Header';
-export * from './TodoItem/TodoItem'
+export * from './TodoItem';
+export * from './TodoList';
+export {Header} from './Header';

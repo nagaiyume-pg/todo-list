@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { CheckBox } from '@rneui/themed';
-import { NotoSansJP_400Regular, useFonts } from '@expo-google-fonts/noto-sans-jp';
+import {
+  NotoSansJP_400Regular,
+  useFonts,
+} from '@expo-google-fonts/noto-sans-jp';
 import * as SplashScreen from 'expo-splash-screen';
 
 interface TodoItemProps {
-  title: string,
-  width: number
+  title: string;
+  width: number;
 }
 
-export const TodoItem = ({title, width}: TodoItemProps) => {
+export const TodoItem = ({ title, width }: TodoItemProps) => {
   const [checked, setChecked] = useState(false);
   const toggleCheckbox = () => setChecked(!checked);
 
@@ -18,12 +21,12 @@ export const TodoItem = ({title, width}: TodoItemProps) => {
   });
 
   if (!fontsLoaded) {
-      return null
+    return null;
   } else {
     SplashScreen.hide();
 
-    return(
-      <View style={[styles.container, {width: width}]}>
+    return (
+      <View style={[styles.container, { width: width }]}>
         <CheckBox
           checked={checked}
           onPress={toggleCheckbox}
@@ -32,35 +35,44 @@ export const TodoItem = ({title, width}: TodoItemProps) => {
           uncheckedIcon="checkbox-blank-outline"
           containerStyle={styles.checkboxContainer}
           wrapperStyle={styles.checkboxWrapper}
-          size={30}
+          size={24}
           checkedColor="blue"
         />
-        <Text style={[styles.title, checked && styles.checkedTitle, {fontFamily: "NotoSansJP_400Regular"}]}>
+        <Text
+          style={[
+            styles.title,
+            checked && styles.checkedTitle,
+            { fontFamily: 'NotoSansJP_400Regular' },
+          ]}
+        >
           {title}
         </Text>
-    </View>
-    )
+      </View>
+    );
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    backgroundColor: "white",
-    display: "flex",
-    flexDirection: "row",
-    paddingVertical: 20
+    alignItems: 'center',
+    backgroundColor: 'white',
+    // borderBottomColor: "gray",
+    // borderBottomWidth: 1,
+    // borderStyle: "solid",
+    display: 'flex',
+    flexDirection: 'row',
+    paddingVertical: 20,
   },
   checkboxWrapper: {
     marginLeft: 20,
     marginRight: 20,
-    padding: 0
+    padding: 0,
   },
   checkboxContainer: {
     margin: 0,
     marginLeft: 0,
     marginRight: 0,
-    padding: 0
+    padding: 0,
   },
   title: {
     fontSize: 16,

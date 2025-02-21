@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import type { Meta, StoryObj } from '@storybook/react';
-import { TodoList } from './index';
+import { TodoList } from './TodoList';
 
 const meta = {
   title: 'TodoList',
