@@ -35,34 +35,30 @@ export const TodoScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle={"dark-content"} />
-      <Header
-        title='Todoリスト'
-      />
+      <StatusBar barStyle={'dark-content'} />
+      <Header title="Todoリスト" />
       <View style={styles.container}>
-        <TodoList
-          todos={todos}
-        />
+        <TodoList todos={todos} />
       </View>
       <Button
         onPress={addTodo}
         icon={{
-          name: "add",
+          name: 'add',
           size: 70,
-          color: "white"
+          color: 'white',
         }}
         iconContainerStyle={{
           marginLeft: 0,
           marginRight: 0,
         }}
         buttonStyle={{
-          backgroundColor: "blue",
+          backgroundColor: 'blue',
           borderRadius: 35,
           padding: 0,
           paddingHorizontal: 0,
         }}
         containerStyle={{
-          position: "absolute",
+          position: 'absolute',
           bottom: 20,
           right: 20,
         }}
@@ -77,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     flex: 1,
   },
 });
