@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { CheckBox } from '@rneui/themed';
+import { Button, CheckBox } from '@rneui/themed';
 import {
   NotoSansJP_400Regular,
   useFonts,
 } from '@expo-google-fonts/noto-sans-jp';
 import * as SplashScreen from 'expo-splash-screen';
 
-interface TodoItemProps {
-  title: string;
+interface TodoItemProps extends Todo {
   width: number;
+  onDelete: (id: number) => void;
+  onCheck: (id: number) => void;
 }
 
-export const TodoItem = ({ title, width }: TodoItemProps) => {
-  const [checked, setChecked] = useState(false);
-  const toggleCheckbox = () => setChecked(!checked);
+export const TodoItem = ({ id, title, checked, width, onDelete, onCheck }: TodoItemProps) => {
+  const toggleCheckbox = useCallback(() => onCheck(id), [id, onCheck])
 
   let [fontsLoaded] = useFonts({
     NotoSansJP_400Regular,
@@ -38,16 +38,39 @@ export const TodoItem = ({ title, width }: TodoItemProps) => {
           size={24}
           checkedColor="blue"
         />
-        <Text
-          style={[
-            styles.title,
-            checked && styles.checkedTitle,
-            { fontFamily: 'NotoSansJP_400Regular' },
-          ]}
-        >
-          {title}
-        </Text>
+        <View style={styles.titleContainer}>
+          <Text
+            style={[
+              styles.title,
+              checked && styles.checkedTitle,
+              { fontFamily: 'NotoSansJP_400Regular' },
+            ]}
+          >
+            {title}
+          </Text>
+        </View>
+        <Button
+          onPress={() => onDelete}
+          icon={{
+            name: 'delete',
+            size: 24,
+            color: 'red',
+          }}
+          iconContainerStyle={{
+            marginLeft: 0,
+            marginRight: 0,
+          }}
+          buttonStyle={{
+            backgroundColor: "white",
+            padding: 0,
+            paddingHorizontal: 0,
+          }}
+          containerStyle={{
+            padding: 20
+          }}
+        />
       </View>
+
     );
   }
 };
@@ -58,18 +81,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     display: 'flex',
     flexDirection: 'row',
-    paddingVertical: 20,
   },
   checkboxWrapper: {
-    marginLeft: 20,
-    marginRight: 20,
-    padding: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    padding: 20,
   },
   checkboxContainer: {
     margin: 0,
     marginLeft: 0,
     marginRight: 0,
     padding: 0,
+  },
+  titleContainer: {
+    flex: 1
   },
   title: {
     fontSize: 16,
