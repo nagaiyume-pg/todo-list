@@ -11,13 +11,19 @@ interface TodoListProps {
 }
 
 // TodoList コンポーネント
-export const TodoList = ({ todos, onDelete, onCheck, onEdit, width }: TodoListProps) => {
+export const TodoList = ({
+  todos,
+  onDelete,
+  onCheck,
+  onEdit,
+  width,
+}: TodoListProps) => {
   return (
     <FlashList
       data={todos}
       estimatedItemSize={100}
       contentContainerStyle={styles.list}
-      renderItem={({item}) =>
+      renderItem={({ item }) => (
         <TodoItem
           key={`TodoItem${item.id}`}
           id={item.id}
@@ -28,13 +34,13 @@ export const TodoList = ({ todos, onDelete, onCheck, onEdit, width }: TodoListPr
           title={item.title}
           checked={item.checked}
         />
-      }
+      )}
     />
   );
 };
 
 const styles = StyleSheet.create({
   list: {
-    backgroundColor: "white"
-  }
-})
+    backgroundColor: 'white',
+  },
+});

@@ -14,10 +14,18 @@ interface TodoItemProps extends Todo {
   onEdit: (id: number) => void;
 }
 
-export const TodoItem = ({ id, title, checked, width, onDelete, onCheck, onEdit }: TodoItemProps) => {
-  const checkTodo = useCallback(() => onCheck(id), [id, onCheck])
-  const deleteTodo = useCallback(() => onDelete(id), [id, onDelete])
-  const editTodo = useCallback(() => onEdit(id), [id, onEdit])
+export const TodoItem = ({
+  id,
+  title,
+  checked,
+  width,
+  onDelete,
+  onCheck,
+  onEdit,
+}: TodoItemProps) => {
+  const checkTodo = useCallback(() => onCheck(id), [id, onCheck]);
+  const deleteTodo = useCallback(() => onDelete(id), [id, onDelete]);
+  const editTodo = useCallback(() => onEdit(id), [id, onEdit]);
 
   let [fontsLoaded] = useFonts({
     NotoSansJP_400Regular,
@@ -67,16 +75,15 @@ export const TodoItem = ({ id, title, checked, width, onDelete, onCheck, onEdit 
             marginRight: 0,
           }}
           buttonStyle={{
-            backgroundColor: "white",
+            backgroundColor: 'white',
             padding: 0,
             paddingHorizontal: 0,
           }}
           containerStyle={{
-            padding: 20
+            padding: 20,
           }}
         />
       </TouchableOpacity>
-
     );
   }
 };
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   titleContainer: {
-    flex: 1
+    flex: 1,
   },
   title: {
     fontSize: 16,

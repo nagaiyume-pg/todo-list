@@ -1,5 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import { Alert, Dimensions, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import {
+  Alert,
+  Dimensions,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { Button } from '@rneui/themed';
 
 import { Header, TodoList } from '@/components';
@@ -25,7 +32,9 @@ export const TodoScreen = () => {
           onPress: (text) => {
             if (text && text.trim() !== '') {
               const newTodo: Todo = {
-                id: todos.length ? Math.max(...todos.map((todo) => todo.id)) + 1 : 0,
+                id: todos.length
+                  ? Math.max(...todos.map((todo) => todo.id)) + 1
+                  : 0,
                 title: text.trim(),
                 checked: false,
               };
@@ -71,37 +80,40 @@ export const TodoScreen = () => {
   }, []);
 
   // Todoを編集する関数
-  const editTodo = useCallback((id: number) => {
-    const todoToEdit = todos.find((todo) => todo.id === id);
-    if (todoToEdit) {
-      Alert.prompt(
-        'タスクの編集',
-        '新しいタスク名を入力してください',
-        [
-          {
-            text: 'キャンセル',
-            style: 'cancel',
-          },
-          {
-            text: '更新',
-            onPress: (text) => {
-              if (text && text.trim() !== '') {
-                setTodos((prevTodos) =>
-                  prevTodos.map((todo) =>
-                    todo.id === id ? { ...todo, title: text.trim() } : todo
-                  )
-                );
-              } else {
-                Alert.alert('タスク名が入力されていません');
-              }
+  const editTodo = useCallback(
+    (id: number) => {
+      const todoToEdit = todos.find((todo) => todo.id === id);
+      if (todoToEdit) {
+        Alert.prompt(
+          'タスクの編集',
+          '新しいタスク名を入力してください',
+          [
+            {
+              text: 'キャンセル',
+              style: 'cancel',
             },
-          },
-        ],
-        'plain-text',
-        todoToEdit.title
-      );
-    }
-  }, [todos]);
+            {
+              text: '更新',
+              onPress: (text) => {
+                if (text && text.trim() !== '') {
+                  setTodos((prevTodos) =>
+                    prevTodos.map((todo) =>
+                      todo.id === id ? { ...todo, title: text.trim() } : todo
+                    )
+                  );
+                } else {
+                  Alert.alert('タスク名が入力されていません');
+                }
+              },
+            },
+          ],
+          'plain-text',
+          todoToEdit.title
+        );
+      }
+    },
+    [todos]
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -151,5 +163,5 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-  }
+  },
 });

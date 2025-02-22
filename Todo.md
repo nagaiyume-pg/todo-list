@@ -1,6 +1,7 @@
 # Todo
 
 機能
+
 - タスク管理
   - タスクの編集
   - タスクの並び替え
@@ -18,19 +19,23 @@
   - データの引継ぎ
 
 ファイル
-- RootStackNavを作成
-- DrawerNavを作成
-- TodoFormの作成
-- TodoProviderの作成
-- TodoContextの作成
-- mocksの作成
+
+- RootStackNav を作成
+- DrawerNav を作成
+- TodoForm の作成
+- TodoProvider の作成
+- TodoContext の作成
+- mocks の作成
 
 ライブラリ
-- jest,testing libraryを試す-テスト用
-- async-storageを試す
+
+- jest,testing library を試す-テスト用
+- async-storage を試す
 
 ビルド
+
 - ビルド用にセットアップ
 
 その他
-- Wikiを作る
+
+- Wiki を作る
