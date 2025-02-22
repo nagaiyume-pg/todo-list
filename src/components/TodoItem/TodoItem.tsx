@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { useCallback } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Button, CheckBox } from '@rneui/themed';
 import {
   NotoSansJP_400Regular,
@@ -11,11 +11,13 @@ interface TodoItemProps extends Todo {
   width: number;
   onDelete: (id: number) => void;
   onCheck: (id: number) => void;
+  onEdit: (id: number) => void;
 }
 
-export const TodoItem = ({ id, title, checked, width, onDelete, onCheck }: TodoItemProps) => {
+export const TodoItem = ({ id, title, checked, width, onDelete, onCheck, onEdit }: TodoItemProps) => {
   const checkTodo = useCallback(() => onCheck(id), [id, onCheck])
   const deleteTodo = useCallback(() => onDelete(id), [id, onDelete])
+  const editTodo = useCallback(() => onEdit(id), [id, onEdit])
 
   let [fontsLoaded] = useFonts({
     NotoSansJP_400Regular,
@@ -27,7 +29,10 @@ export const TodoItem = ({ id, title, checked, width, onDelete, onCheck }: TodoI
     SplashScreen.hide();
 
     return (
-      <View style={[styles.container, { width: width }]}>
+      <TouchableOpacity
+        onPress={editTodo}
+        style={[styles.container, { width: width }]}
+      >
         <CheckBox
           checked={checked}
           onPress={checkTodo}
@@ -70,7 +75,7 @@ export const TodoItem = ({ id, title, checked, width, onDelete, onCheck }: TodoI
             padding: 20
           }}
         />
-      </View>
+      </TouchableOpacity>
 
     );
   }

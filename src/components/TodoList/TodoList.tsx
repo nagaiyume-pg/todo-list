@@ -6,11 +6,12 @@ interface TodoListProps {
   todos: Todo[];
   onDelete: (id: number) => void;
   onCheck: (id: number) => void;
+  onEdit: (id: number) => void;
   width: number;
 }
 
 // TodoList コンポーネント
-export const TodoList = ({ todos, onDelete, onCheck, width }: TodoListProps) => {
+export const TodoList = ({ todos, onDelete, onCheck, onEdit, width }: TodoListProps) => {
   return (
     <FlashList
       data={todos}
@@ -22,6 +23,7 @@ export const TodoList = ({ todos, onDelete, onCheck, width }: TodoListProps) => 
           id={item.id}
           onCheck={onCheck}
           onDelete={onDelete}
+          onEdit={onEdit}
           width={width}
           title={item.title}
           checked={item.checked}

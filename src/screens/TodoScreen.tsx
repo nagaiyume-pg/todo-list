@@ -23,7 +23,6 @@ export const TodoScreen = () => {
         {
           text: '追加',
           onPress: (text) => {
-            console.log(todos)
             if (text && text.trim() !== '') {
               const newTodo: Todo = {
                 id: todos.length ? Math.max(...todos.map((todo) => todo.id)) + 1 : 0,
@@ -39,7 +38,7 @@ export const TodoScreen = () => {
       ],
       'plain-text'
     );
-  }, [todos])
+  }, [todos]);
 
   // Todoの状態をチェックする関数（完了状態をトグル）
   const checkTodo = useCallback((id: number) => {
@@ -48,7 +47,7 @@ export const TodoScreen = () => {
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
       )
     );
-  }, [])
+  }, []);
 
   // Todoを削除する関数
   const deleteTodo = useCallback((id: number) => {
@@ -69,19 +68,52 @@ export const TodoScreen = () => {
       ],
       { cancelable: true }
     );
-  }, [])
+  }, []);
+
+  // Todoを編集する関数
+  const editTodo = useCallback((id: number) => {
+    const todoToEdit = todos.find((todo) => todo.id === id);
+    if (todoToEdit) {
+      Alert.prompt(
+        'タスクの編集',
+        '新しいタスク名を入力してください',
+        [
+          {
+            text: 'キャンセル',
+            style: 'cancel',
+          },
+          {
+            text: '更新',
+            onPress: (text) => {
+              if (text && text.trim() !== '') {
+                setTodos((prevTodos) =>
+                  prevTodos.map((todo) =>
+                    todo.id === id ? { ...todo, title: text.trim() } : todo
+                  )
+                );
+              } else {
+                Alert.alert('タスク名が入力されていません');
+              }
+            },
+          },
+        ],
+        'plain-text',
+        todoToEdit.title
+      );
+    }
+  }, [todos]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle={'dark-content'} />
       <Header title="Todoリスト" />
       <View style={styles.container}>
-        {/* TodoListにtodosを渡し、削除関数と完了状態トグル関数も渡す */}
         <TodoList
           todos={todos}
           onCheck={checkTodo}
           onDelete={deleteTodo}
-          width={windowWidth} // 事前に計算した画面幅を渡す
+          onEdit={editTodo}
+          width={windowWidth}
         />
       </View>
       <Button
