@@ -1,6 +1,6 @@
 import { Alert, Dimensions, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import { Button } from '@rneui/themed';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Header, TodoList } from '@/components';
 
 export const TodoScreen = () => {
@@ -10,7 +10,7 @@ export const TodoScreen = () => {
   /*
    * 新しいタスクを追加する関数
    */
-  const addTodo = () => {
+  const addTodo = useCallback(() => {
     Alert.prompt(
       '新しいタスク',
       'タスク名を入力してください',
@@ -37,19 +37,19 @@ export const TodoScreen = () => {
       ],
       'plain-text'
     );
-  };
+  }, [])
 
   // Todoの状態をチェックする関数（完了状態をトグル）
-  const checkTodo = (id: number) => {
+  const checkTodo = useCallback((id: number) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
       )
     );
-  };
+  }, [])
 
   // Todoを削除する関数
-  const deleteTodo = (id: number) => {
+  const deleteTodo = useCallback((id: number) => {
     Alert.alert(
       '削除確認',
       '本当に削除しますか？',
@@ -67,7 +67,7 @@ export const TodoScreen = () => {
       ],
       { cancelable: true }
     );
-  };
+  }, [])
 
   return (
     <SafeAreaView style={styles.safeArea}>
