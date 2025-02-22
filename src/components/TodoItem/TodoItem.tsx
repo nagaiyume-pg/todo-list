@@ -5,6 +5,7 @@ import {
   useFonts,
 } from '@expo-google-fonts/noto-sans-jp';
 import * as SplashScreen from 'expo-splash-screen';
+import React from 'react';
 
 interface TodoItemProps extends Todo {
   width: number;
@@ -13,7 +14,7 @@ interface TodoItemProps extends Todo {
   onEdit: (id: string) => void;
 }
 
-export const TodoItem = ({
+export const TodoItem = React.memo(({
   id,
   title,
   checked,
@@ -73,7 +74,7 @@ export const TodoItem = ({
       </TouchableOpacity>
     );
   }
-};
+})
 
 const styles = StyleSheet.create({
   container: {

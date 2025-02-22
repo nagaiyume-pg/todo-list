@@ -15,9 +15,12 @@ export const TodoScreen = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const windowWidth = Dimensions.get('window').width; // 画面幅を格納して再利用
 
-  /*
-   * 新しいタスクを追加する関数
-   */
+  // 最後に追加したタスクのIDを求めるヘルパー関数
+  const getNextId = (todos: Todo[]) => {
+    return todos.length ? Math.max(...todos.map((todo) => Number(todo.id))) + 1 : 0;
+  }
+
+  // 新しいタスクを追加する関数
   const addTodo = useCallback(() => {
     Alert.prompt(
       '新しいタスク',
@@ -32,9 +35,7 @@ export const TodoScreen = () => {
           onPress: (text) => {
             if (text && text.trim() !== '') {
               const newTodo: Todo = {
-                id: String(todos.length
-                  ? Math.max(...todos.map((todo) => Number(todo.id))) + 1
-                  : 0),
+                id: String(getNextId(todos)),  // 追加前にIDを計算
                 title: text.trim(),
                 checked: false,
               };
