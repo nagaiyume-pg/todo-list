@@ -9,9 +9,9 @@ import * as SplashScreen from 'expo-splash-screen';
 
 interface TodoItemProps extends Todo {
   width: number;
-  onDelete: (id: number) => void;
-  onCheck: (id: number) => void;
-  onEdit: (id: number) => void;
+  onDelete: (id: string) => void;
+  onCheck: (id: string) => void;
+  onEdit: (id: string) => void;
 }
 
 export const TodoItem = ({

@@ -32,9 +32,9 @@ export const TodoScreen = () => {
           onPress: (text) => {
             if (text && text.trim() !== '') {
               const newTodo: Todo = {
-                id: todos.length
-                  ? Math.max(...todos.map((todo) => todo.id)) + 1
-                  : 0,
+                id: String(todos.length
+                  ? Math.max(...todos.map((todo) => Number(todo.id))) + 1
+                  : 0),
                 title: text.trim(),
                 checked: false,
               };
@@ -50,7 +50,7 @@ export const TodoScreen = () => {
   }, [todos]);
 
   // Todoの状態をチェックする関数（完了状態をトグル）
-  const checkTodo = useCallback((id: number) => {
+  const checkTodo = useCallback((id: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
@@ -59,7 +59,7 @@ export const TodoScreen = () => {
   }, []);
 
   // Todoを削除する関数
-  const deleteTodo = useCallback((id: number) => {
+  const deleteTodo = useCallback((id: string) => {
     Alert.alert(
       '削除確認',
       '本当に削除しますか？',
@@ -81,7 +81,7 @@ export const TodoScreen = () => {
 
   // Todoを編集する関数
   const editTodo = useCallback(
-    (id: number) => {
+    (id: string) => {
       const todoToEdit = todos.find((todo) => todo.id === id);
       if (todoToEdit) {
         Alert.prompt(
