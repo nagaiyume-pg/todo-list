@@ -2,8 +2,8 @@ import React, { createContext, useState, ReactNode } from 'react';
 
 // Contextの準備
 interface TodoContextProps {
-  todos: TodoProps[];
-  setTodos: (login: TodoProps[]) => void;
+  todos: Todo[];
+  setTodos: (login: Todo[]) => void;
 }
 export const TodoContext = createContext<TodoContextProps | undefined>(
   undefined
@@ -15,7 +15,7 @@ interface TodoProviderProps {
 }
 
 export const TodoProvider = ({ children }: TodoProviderProps) => {
-  const [todos, setTodos] = useState<TodoProps[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   return (
     <TodoContext.Provider value={{ todos, setTodos }}>
