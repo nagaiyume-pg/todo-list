@@ -24,7 +24,7 @@ export const TodoScreen = () => {
           onPress: (text) => {
             if (text && text.trim() !== '') {
               const newTodo: Todo = {
-                id: Date.now(),
+                id: todos.length ? Math.max(...todos.map((todo) => todo.id)) + 1 : 1,
                 title: text.trim(),
                 checked: false,
               };
