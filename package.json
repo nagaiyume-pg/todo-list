@@ -51,5 +51,10 @@
   "private": true,
   "repository": "https://github.com/nagaiyume-pg/todo-list.git",
   "author": "nagaiyume-pg <na9a1yume.pg@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ]
+  }
 }
