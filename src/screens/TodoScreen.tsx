@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { Alert, Dimensions, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
-import BottomSheet from 'reanimated-bottom-sheet';
 import { Button } from '@rneui/themed';
 
 import { Header, TodoList } from '@/components';
@@ -72,13 +71,6 @@ export const TodoScreen = () => {
     );
   }, [])
 
-  const sheetRef = React.useRef(null);
-
-  const renderContent = () => (
-    <View style={styles.modalWrapper}>
-    </View>
-  );
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle={'dark-content'} />
@@ -93,7 +85,7 @@ export const TodoScreen = () => {
         />
       </View>
       <Button
-        onPress={() => sheetRef.current.snapTo(0)}
+        onPress={addTodo}
         icon={{
           name: 'add',
           size: 70,
@@ -115,13 +107,6 @@ export const TodoScreen = () => {
           right: 20,
         }}
       />
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={['90%', '50%', 50]}
-        initialSnap={2} // モーダルの初期位置を決める。snapPointsのインデックス番号を指定
-        borderRadius={20}
-        renderContent={renderContent}
-      />
     </SafeAreaView>
   );
 };
@@ -134,8 +119,5 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-  },
-  modalWrapper: {
-    flex: 1
   }
 });
