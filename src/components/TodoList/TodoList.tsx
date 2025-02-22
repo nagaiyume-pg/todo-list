@@ -49,7 +49,7 @@ export const TodoList = ({
     <FlashList
       data={todos}
       keyExtractor={keyExtractor}
-      estimatedItemSize={100}
+      estimatedItemSize={68}
       contentContainerStyle={styles.list}
       renderItem={renderItem}
     />

@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Button, CheckBox } from '@rneui/themed';
 import {
@@ -23,9 +22,6 @@ export const TodoItem = ({
   onCheck,
   onEdit,
 }: TodoItemProps) => {
-  const checkTodo = useCallback(() => onCheck(id), [id, onCheck]);
-  const deleteTodo = useCallback(() => onDelete(id), [id, onDelete]);
-  const editTodo = useCallback(() => onEdit(id), [id, onEdit]);
 
   let [fontsLoaded] = useFonts({
     NotoSansJP_400Regular,
@@ -38,12 +34,12 @@ export const TodoItem = ({
 
     return (
       <TouchableOpacity
-        onPress={editTodo}
+        onPress={() => onEdit(id)}
         style={[styles.container, { width: width }]}
       >
         <CheckBox
           checked={checked}
-          onPress={checkTodo}
+          onPress={() => onCheck(id)}
           iconType="material-community"
           checkedIcon="checkbox-marked"
           uncheckedIcon="checkbox-blank-outline"
@@ -64,24 +60,15 @@ export const TodoItem = ({
           </Text>
         </View>
         <Button
-          onPress={deleteTodo}
+          onPress={() => onDelete(id)}
           icon={{
             name: 'delete',
             size: 24,
             color: 'red',
           }}
-          iconContainerStyle={{
-            marginLeft: 0,
-            marginRight: 0,
-          }}
-          buttonStyle={{
-            backgroundColor: 'white',
-            padding: 0,
-            paddingHorizontal: 0,
-          }}
-          containerStyle={{
-            padding: 20,
-          }}
+          iconContainerStyle={styles.iconContainerStyle}
+          buttonStyle={styles.buttonStyle}
+          containerStyle={styles.containerStyle}
         />
       </TouchableOpacity>
     );
@@ -116,4 +103,16 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through', // チェック時に文字に線を引く
     color: 'gray', // 線を引いた文字の色を変更（任意）
   },
+  iconContainerStyle: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
+  buttonStyle: {
+    backgroundColor: 'white',
+    padding: 0,
+    paddingHorizontal: 0,
+  },
+  containerStyle: {
+    padding: 20
+  }
 });
