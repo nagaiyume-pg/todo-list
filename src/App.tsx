@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+import './wdyr'
+
 import { TodoScreen } from '@/screens';
 
 function App() {
