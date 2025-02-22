@@ -9,14 +9,20 @@
   - タグの追加
   - タグの編集
   - タグの削除
+- ナビゲーション機能
+  - ドロワーナビゲーション
+  - スタックナビゲーション
 - データ管理
   - データの復元
   - データの引継ぎ
 
 ファイル
-- TodoProviderを作る
-- TodoContextを作る
-- mocksを作る
+- RootStackNavを作成
+- DrawerNavを作成
+- TodoFormの作成
+- TodoProviderの作成
+- TodoContextの作成
+- mocksの作成
 
 ライブラリ
 - jest,testing libraryを試す-テスト用
