@@ -14,7 +14,8 @@ interface TodoItemProps extends Todo {
 }
 
 export const TodoItem = ({ id, title, checked, width, onDelete, onCheck }: TodoItemProps) => {
-  const toggleCheckbox = useCallback(() => onCheck(id), [id, onCheck])
+  const checkTodo = useCallback(() => onCheck(id), [id, onCheck])
+  const deleteTodo = useCallback(() => onDelete(id), [id, onDelete])
 
   let [fontsLoaded] = useFonts({
     NotoSansJP_400Regular,
@@ -29,7 +30,7 @@ export const TodoItem = ({ id, title, checked, width, onDelete, onCheck }: TodoI
       <View style={[styles.container, { width: width }]}>
         <CheckBox
           checked={checked}
-          onPress={toggleCheckbox}
+          onPress={checkTodo}
           iconType="material-community"
           checkedIcon="checkbox-marked"
           uncheckedIcon="checkbox-blank-outline"
@@ -50,7 +51,7 @@ export const TodoItem = ({ id, title, checked, width, onDelete, onCheck }: TodoI
           </Text>
         </View>
         <Button
-          onPress={() => onDelete}
+          onPress={deleteTodo}
           icon={{
             name: 'delete',
             size: 24,
