@@ -56,9 +56,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     backgroundColor: 'white',
-    // borderBottomColor: "gray",
-    // borderBottomWidth: 1,
-    // borderStyle: "solid",
     display: 'flex',
     flexDirection: 'row',
     paddingVertical: 20,
