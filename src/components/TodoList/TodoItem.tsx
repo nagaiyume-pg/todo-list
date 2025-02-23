@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Button, CheckBox } from '@rneui/themed';
 import {
@@ -5,7 +6,6 @@ import {
   useFonts,
 } from '@expo-google-fonts/noto-sans-jp';
 import * as SplashScreen from 'expo-splash-screen';
-import React from 'react';
 
 interface TodoItemProps extends Todo {
   width: number;
