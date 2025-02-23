@@ -39,7 +39,7 @@ export const TodoScreen = () => {
               const newTodo: Todo = {
                 id: String(getNextId(todos)), // 追加前にIDを計算
                 title: text.trim(),
-                checked: false,
+                completed: false,
               };
               setTodos((prevTodos) => [...prevTodos, newTodo]);
             } else {
@@ -56,7 +56,7 @@ export const TodoScreen = () => {
   const checkTodo = useCallback((id: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
+        todo.id === id ? { ...todo, checked: !todo.completed } : todo
       )
     );
   }, []);

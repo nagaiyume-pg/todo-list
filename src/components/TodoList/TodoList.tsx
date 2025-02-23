@@ -1,14 +1,7 @@
 import { useCallback } from 'react';
 import { StyleSheet } from 'react-native';
-import { TodoItem } from '../TodoItem';
+import { TodoItem } from './TodoItem';
 import { FlashList, ListRenderItem } from '@shopify/flash-list';
-
-// Todo の型を定義
-interface Todo {
-  id: string;
-  title: string;
-  checked: boolean;
-}
 
 // TodoList コンポーネントの props の型を定義
 interface TodoListProps {
@@ -38,7 +31,7 @@ export const TodoList = ({
         onEdit={onEdit}
         width={width}
         title={item.title}
-        checked={item.checked}
+        completed={item.completed}
       />
     ),
     [onCheck, onDelete, onEdit, width]

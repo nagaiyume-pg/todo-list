@@ -15,7 +15,7 @@ interface TodoItemProps extends Todo {
 }
 
 export const TodoItem = React.memo(
-  ({ id, title, checked, width, onDelete, onCheck, onEdit }: TodoItemProps) => {
+  ({ id, title, completed, width, onDelete, onCheck, onEdit }: TodoItemProps) => {
     let [fontsLoaded] = useFonts({
       NotoSansJP_400Regular,
     });
@@ -31,7 +31,7 @@ export const TodoItem = React.memo(
           style={[styles.container, { width: width }]}
         >
           <CheckBox
-            checked={checked}
+            checked={completed}
             onPress={() => onCheck(id)}
             iconType="material-community"
             checkedIcon="checkbox-marked"
@@ -45,7 +45,7 @@ export const TodoItem = React.memo(
             <Text
               style={[
                 styles.title,
-                checked && styles.checkedTitle,
+                completed && styles.checkedTitle,
                 { fontFamily: 'NotoSansJP_400Regular' },
               ]}
             >
