@@ -1,18 +1,12 @@
-import { StyleSheet } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
-// import '../wdyr';
-
-import { TodoScreen } from '@/screens';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
 
 function App() {
   return (
-    <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-      <SafeAreaProvider>
-        <TodoScreen />
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <View style={styles.container}>
+      <Text>Open up App.tsx to start working on your app!</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
@@ -23,3 +17,12 @@ if (process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === 'true') {
 }
 
 export default AppEntryPoint;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
