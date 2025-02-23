@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { StyleSheet } from 'react-native';
-import { TodoItem } from '../TodoItem';
+import { TodoItem } from './TodoItem';
 import { FlashList, ListRenderItem } from '@shopify/flash-list';
 
 // Todo の型を定義
