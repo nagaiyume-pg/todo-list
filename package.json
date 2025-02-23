@@ -32,7 +32,7 @@
     "@storybook/react": "^8.5.8",
     "@storybook/react-native": "^8.5.5",
     "@types/react": "~18.3.12",
-    "@welldone-software/why-did-you-render": "^10.0.1",
+    "@welldone-software/why-did-you-render": "^8.0.3",
     "babel-loader": "^8.4.1",
     "babel-plugin-react-docgen-typescript": "^1.5.1",
     "cross-env": "^7.0.3",
