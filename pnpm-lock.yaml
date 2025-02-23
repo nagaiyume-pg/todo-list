@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@expo-google-fonts/noto-sans-jp':
+        specifier: ^0.2.3
+        version: 0.2.3
       '@react-native-async-storage/async-storage':
         specifier: ^2.1.1
         version: 2.1.1(react-native@0.76.7(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))
@@ -951,6 +954,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@expo-google-fonts/noto-sans-jp@0.2.3':
+    resolution: {integrity: sha512-TpIEQqu9nJdAC4qvnd0g6aHeby/Ks8Pc/dxXLrVJQXkz3EXJDIW0IOtbhWQT1bnw+u9lE4+8PdSY/zL7sJZXGw==}
 
   '@expo/bunyan@4.0.1':
     resolution: {integrity: sha512-+Lla7nYSiHZirgK+U/uYzsLv/X+HaJienbD5AKX1UQZHYfWaP+9uuQluRB4GrEVWF0GZ7vEVp/jzaOT9k/SQlg==}
@@ -5257,6 +5263,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.0':
     optional: true
+
+  '@expo-google-fonts/noto-sans-jp@0.2.3': {}
 
   '@expo/bunyan@4.0.1':
     dependencies:
