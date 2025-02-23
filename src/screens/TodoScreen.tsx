@@ -17,8 +17,10 @@ export const TodoScreen = () => {
 
   // 最後に追加したタスクのIDを求めるヘルパー関数
   const getNextId = (todos: Todo[]) => {
-    return todos.length ? Math.max(...todos.map((todo) => Number(todo.id))) + 1 : 0;
-  }
+    return todos.length
+      ? Math.max(...todos.map((todo) => Number(todo.id))) + 1
+      : 0;
+  };
 
   // 新しいタスクを追加する関数
   const addTodo = useCallback(() => {
@@ -35,7 +37,7 @@ export const TodoScreen = () => {
           onPress: (text) => {
             if (text && text.trim() !== '') {
               const newTodo: Todo = {
-                id: String(getNextId(todos)),  // 追加前にIDを計算
+                id: String(getNextId(todos)), // 追加前にIDを計算
                 title: text.trim(),
                 checked: false,
               };

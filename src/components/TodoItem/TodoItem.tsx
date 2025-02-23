@@ -14,67 +14,60 @@ interface TodoItemProps extends Todo {
   onEdit: (id: string) => void;
 }
 
-export const TodoItem = React.memo(({
-  id,
-  title,
-  checked,
-  width,
-  onDelete,
-  onCheck,
-  onEdit,
-}: TodoItemProps) => {
+export const TodoItem = React.memo(
+  ({ id, title, checked, width, onDelete, onCheck, onEdit }: TodoItemProps) => {
+    let [fontsLoaded] = useFonts({
+      NotoSansJP_400Regular,
+    });
 
-  let [fontsLoaded] = useFonts({
-    NotoSansJP_400Regular,
-  });
+    if (!fontsLoaded) {
+      return null;
+    } else {
+      SplashScreen.hide();
 
-  if (!fontsLoaded) {
-    return null;
-  } else {
-    SplashScreen.hide();
-
-    return (
-      <TouchableOpacity
-        onPress={() => onEdit(id)}
-        style={[styles.container, { width: width }]}
-      >
-        <CheckBox
-          checked={checked}
-          onPress={() => onCheck(id)}
-          iconType="material-community"
-          checkedIcon="checkbox-marked"
-          uncheckedIcon="checkbox-blank-outline"
-          containerStyle={styles.checkboxContainer}
-          wrapperStyle={styles.checkboxWrapper}
-          size={24}
-          checkedColor="blue"
-        />
-        <View style={styles.titleContainer}>
-          <Text
-            style={[
-              styles.title,
-              checked && styles.checkedTitle,
-              { fontFamily: 'NotoSansJP_400Regular' },
-            ]}
-          >
-            {title}
-          </Text>
-        </View>
-        <Button
-          onPress={() => onDelete(id)}
-          icon={{
-            name: 'delete',
-            size: 24,
-            color: 'red',
-          }}
-          iconContainerStyle={styles.iconContainerStyle}
-          buttonStyle={styles.buttonStyle}
-          containerStyle={styles.containerStyle}
-        />
-      </TouchableOpacity>
-    );
+      return (
+        <TouchableOpacity
+          onPress={() => onEdit(id)}
+          style={[styles.container, { width: width }]}
+        >
+          <CheckBox
+            checked={checked}
+            onPress={() => onCheck(id)}
+            iconType="material-community"
+            checkedIcon="checkbox-marked"
+            uncheckedIcon="checkbox-blank-outline"
+            containerStyle={styles.checkboxContainer}
+            wrapperStyle={styles.checkboxWrapper}
+            size={24}
+            checkedColor="blue"
+          />
+          <View style={styles.titleContainer}>
+            <Text
+              style={[
+                styles.title,
+                checked && styles.checkedTitle,
+                { fontFamily: 'NotoSansJP_400Regular' },
+              ]}
+            >
+              {title}
+            </Text>
+          </View>
+          <Button
+            onPress={() => onDelete(id)}
+            icon={{
+              name: 'delete',
+              size: 24,
+              color: 'red',
+            }}
+            iconContainerStyle={styles.iconContainerStyle}
+            buttonStyle={styles.buttonStyle}
+            containerStyle={styles.containerStyle}
+          />
+        </TouchableOpacity>
+      );
+    }
   }
-})
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -114,6 +107,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
   containerStyle: {
-    padding: 20
-  }
+    padding: 20,
+  },
 });

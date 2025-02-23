@@ -5,9 +5,8 @@ interface TodoContextProps {
   todos: Todo[];
   setTodos: (login: Todo[]) => void;
 }
-export const TodoContext = createContext<TodoContextProps | undefined>(
-  undefined
-);
+export const TodoContext =
+  createContext<TodoContextProps | undefined>(undefined);
 
 // Providerの準備
 interface TodoProviderProps {
