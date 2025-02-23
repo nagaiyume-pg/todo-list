@@ -4,6 +4,7 @@ import { start, updateView } from "@storybook/react-native";
 
 import "@storybook/addon-ondevice-controls/register";
 import "@storybook/addon-ondevice-actions/register";
+import "@storybook/addon-actions/register.js";
 
 const normalizedStories = [
   {
@@ -30,6 +31,7 @@ const annotations = [
   require("./preview"),
   require("@storybook/react-native/preview"),
   require("@storybook/addon-ondevice-actions/preview"),
+  require("@storybook/addon-actions/preview"),
 ];
 
 global.STORIES = normalizedStories;

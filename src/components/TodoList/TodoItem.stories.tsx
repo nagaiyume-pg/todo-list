@@ -10,6 +10,15 @@ const meta = {
         title: "タスク",
         completed: false,
         width: 375,
+        onCheck(id) {
+            console.log(id);
+        },
+        onDelete(id) {
+            console.log(id);
+        },
+        onEdit(id) {
+            console.log(id);
+        },
     },
     decorators: [
         (Story) => (
