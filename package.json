@@ -12,12 +12,8 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@expo-google-fonts/noto-sans-jp": "^0.2.3",
     "@react-native-async-storage/async-storage": "^1.23.1",
-    "@rneui/themed": "4.0.0-rc.8",
-    "@shopify/flash-list": "^1.7.3",
     "expo": "~52.0.37",
-    "expo-splash-screen": "^0.29.22",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
     "react-dom": "^18.3.1",
@@ -33,7 +29,6 @@
     "@storybook/react": "^8.5.8",
     "@storybook/react-native": "^8.5.5",
     "@types/react": "~18.3.12",
-    "@welldone-software/why-did-you-render": "^8.0.3",
     "babel-loader": "^8.4.1",
     "babel-plugin-react-docgen-typescript": "^1.5.1",
     "cross-env": "^7.0.3",
