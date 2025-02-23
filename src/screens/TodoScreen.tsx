@@ -16,43 +16,6 @@ export const TodoScreen = ({ navigation }: any) => {
   const {todos, setTodos} = useTodoContext();
   const windowWidth = Dimensions.get('window').width; // 画面幅を格納して再利用
 
-  // 最後に追加したタスクのIDを求めるヘルパー関数
-  const getNextId = (todos: Todo[]) => {
-    return todos.length
-      ? Math.max(...todos.map((todo) => Number(todo.id))) + 1
-      : 0;
-  };
-
-  // 新しいタスクを追加する関数
-  const addTodo = useCallback(() => {
-    Alert.prompt(
-      '新しいタスク',
-      'タスク名を入力してください',
-      [
-        {
-          text: 'キャンセル',
-          style: 'cancel',
-        },
-        {
-          text: '追加',
-          onPress: (text) => {
-            if (text && text.trim() !== '') {
-              const newTodo: Todo = {
-                id: String(getNextId(todos)), // 追加前にIDを計算
-                title: text.trim(),
-                completed: false,
-              };
-              setTodos((prevTodos) => [...prevTodos, newTodo]);
-            } else {
-              Alert.alert('タスク名が入力されていません');
-            }
-          },
-        },
-      ],
-      'plain-text'
-    );
-  }, [todos]);
-
   // Todoの状態をチェックする関数（完了状態をトグル）
   const checkTodo = useCallback((id: string) => {
     setTodos((prevTodos) =>

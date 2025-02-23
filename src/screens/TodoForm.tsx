@@ -1,34 +1,56 @@
-import { Button } from "@rneui/themed"
-import { StyleSheet, Text, View } from "react-native"
+import React, { useState } from "react";
+import { Button, Input } from "@rneui/themed";
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
+
+import { useTodoContext } from "@/contexts";
 
 // TodoFormコンポーネント
 export const TodoForm = ({ navigation }: any) => {
-    // navigationプロパティを受け取ることで、画面遷移機能を使えるようにする
-    return (
-        <View style={styles.container}>
-            {/* TodoFormのタイトル */}
-            <Text style={styles.title}>Todo Form</Text>
+    const { todos, setTodos } = useTodoContext();
+    const [task, setTask] = useState<string>("");
 
-            {/* 戻るボタン */}
-            {/* ボタンを押したときに前の画面に戻るようにする */}
-            <Button
-                title="Go Back"
-                onPress={() => navigation.goBack()}
-            />
-        </View>
-    )
-}
+    const handleAddTask = () => {
+        if (!task.trim()) return; // 空白タスクを追加しない
+
+        const newTodo = {
+            id: String(todos.length ? Math.max(...todos.map((todo) => Number(todo.id))) + 1 : 0),
+            title: task.trim(),
+            completed: false,
+        };
+
+        setTodos((prevTodos) => [...prevTodos, newTodo]);
+        setTask(""); // 入力後、テキストフィールドをクリア
+        navigation.goBack();
+    };
+
+    return (
+        <SafeAreaView style={styles.safeArea}>
+            <StatusBar barStyle={"light-content"} />
+            <View style={styles.container}>
+                <Text style={styles.title}>Todo Form</Text>
+                <Input
+                    placeholder="タスク名"
+                    value={task}
+                    onChangeText={setTask}
+                />
+                <Button title="追加" onPress={handleAddTask} />
+            </View>
+        </SafeAreaView>
+    );
+};
 
 // スタイルの定義
 const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+    },
     container: {
         flex: 1,
-        justifyContent: 'center', // コンテンツを中央に配置
-        alignItems: 'center', // 横方向も中央に配置
+        alignItems: "center", // 横方向も中央に配置
     },
     title: {
         fontSize: 24, // タイトル文字のサイズ
-        fontWeight: 'bold', // 太字
+        fontWeight: "bold", // 太字
         marginBottom: 20, // ボタンとの間にスペースを追加
-    }
-})
+    },
+});
