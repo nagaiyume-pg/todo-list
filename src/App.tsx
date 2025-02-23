@@ -1,20 +1,23 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
 
 // import '../wdyr';
 
-import { TodoScreen } from '@/screens';
 import { TodoProvider } from '@/context';
+import { RootStackNav } from './navigations';
 
 function App() {
   return (
     <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-      <TodoProvider>
-        <SafeAreaProvider>
-          <TodoScreen />
-        </SafeAreaProvider>
-      </TodoProvider>
+      <NavigationContainer>
+        <TodoProvider>
+          <SafeAreaProvider>
+            <RootStackNav />
+          </SafeAreaProvider>
+        </TodoProvider>
+      </NavigationContainer>
     </GestureHandlerRootView>
   );
 }

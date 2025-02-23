@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import {
   Alert,
   Dimensions,
@@ -12,7 +12,7 @@ import { Button } from '@rneui/themed';
 import { Header, TodoList } from '@/components';
 import { useTodoContext } from '@/context';
 
-export const TodoScreen = () => {
+export const TodoScreen = ({ navigation }: any) => {
   const {todos, setTodos} = useTodoContext();
   const windowWidth = Dimensions.get('window').width; // 画面幅を格納して再利用
 
@@ -133,7 +133,7 @@ export const TodoScreen = () => {
         />
       </View>
       <Button
-        onPress={addTodo}
+        onPress={() => navigation.navigate("TodoForm")}
         icon={{
           name: 'add',
           size: 70,
