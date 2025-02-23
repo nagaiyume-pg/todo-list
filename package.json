@@ -47,6 +47,7 @@
     "babel-loader": "8.4.1",
     "babel-plugin-react-docgen-typescript": "^1.5.1",
     "cross-env": "^7.0.3",
+    "prettier": "2.3.0",
     "typescript": "^5.3.3"
   },
   "private": true,
