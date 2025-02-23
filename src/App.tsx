@@ -5,13 +5,16 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 // import '../wdyr';
 
 import { TodoScreen } from '@/screens';
+import { TodoProvider } from '@/context';
 
 function App() {
   return (
     <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-      <SafeAreaProvider>
-        <TodoScreen />
-      </SafeAreaProvider>
+      <TodoProvider>
+        <SafeAreaProvider>
+          <TodoScreen />
+        </SafeAreaProvider>
+      </TodoProvider>
     </GestureHandlerRootView>
   );
 }

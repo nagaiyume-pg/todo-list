@@ -3,7 +3,7 @@ import React, { createContext, useState, ReactNode } from 'react';
 // Contextの準備
 interface TodoContextProps {
   todos: Todo[];
-  setTodos: (login: Todo[]) => void;
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
 }
 export const TodoContext =
   createContext<TodoContextProps | undefined>(undefined);

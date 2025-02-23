@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NotoSansJP_700Bold, useFonts } from '@expo-google-fonts/noto-sans-jp';
 import * as SplashScreen from 'expo-splash-screen';
@@ -6,7 +7,7 @@ interface HeaderProps {
   title: string;
 }
 
-export const Header = ({ title }: HeaderProps) => {
+export const Header = React.memo(({ title }: HeaderProps) => {
   let [fontsLoaded] = useFonts({
     NotoSansJP_700Bold,
   });
@@ -24,7 +25,7 @@ export const Header = ({ title }: HeaderProps) => {
       </View>
     );
   }
-};
+})
 
 const styles = StyleSheet.create({
   container: {

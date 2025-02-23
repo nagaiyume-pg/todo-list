@@ -10,9 +10,10 @@ import {
 import { Button } from '@rneui/themed';
 
 import { Header, TodoList } from '@/components';
+import { useTodoContext } from '@/context';
 
 export const TodoScreen = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const {todos, setTodos} = useTodoContext();
   const windowWidth = Dimensions.get('window').width; // 画面幅を格納して再利用
 
   // 最後に追加したタスクのIDを求めるヘルパー関数
@@ -56,7 +57,7 @@ export const TodoScreen = () => {
   const checkTodo = useCallback((id: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.completed } : todo
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
   }, []);

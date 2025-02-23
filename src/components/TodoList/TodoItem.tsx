@@ -25,6 +25,8 @@ export const TodoItem = React.memo(
     } else {
       SplashScreen.hide();
 
+      console.log(id)
+
       return (
         <TouchableOpacity
           onPress={() => onEdit(id)}
