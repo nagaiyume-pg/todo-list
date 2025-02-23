@@ -31,6 +31,8 @@
 
 - jest,testing library を試す-テスト用
 - async-storage を試す
+- ESlintを試す
+- babelを試す
 
 ビルド
 
