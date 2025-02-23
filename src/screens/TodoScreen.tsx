@@ -10,7 +10,7 @@ import {
 import { Button } from '@rneui/themed';
 
 import { Header, TodoList } from '@/components';
-import { useTodoContext } from '@/context';
+import { useTodoContext } from '@/contexts';
 
 export const TodoScreen = ({ navigation }: any) => {
   const {todos, setTodos} = useTodoContext();

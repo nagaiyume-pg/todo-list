@@ -14,6 +14,9 @@ export const RootStackNav = () => {
             <Stack.Screen
                 name="TodoForm"
                 component={TodoForm}
+                options={{
+                    presentation: 'modal'
+                }}
             />
         </Stack.Navigator>
     )

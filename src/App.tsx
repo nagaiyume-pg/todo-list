@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 // import '../wdyr';
 
-import { TodoProvider } from '@/context';
+import { TodoProvider } from '@/contexts';
 import { RootStackNav } from './navigations';
 
 function App() {
